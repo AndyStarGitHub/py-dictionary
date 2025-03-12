@@ -63,7 +63,6 @@ class Dictionary:
             return default[0]
 
     def _resize(self) -> None:
-        print("resize called")
         current_hash_table = self._hash_table
         self.capacity = self.capacity * self.CAPACITY_MULTIPLIER
         self._hash_table = [None] * self.capacity
@@ -73,7 +72,7 @@ class Dictionary:
                 self[node.key] = node.value
 
     def _check_resize(self) -> None:
-        if self._size > self._max_size:
+        if self._size >= self._max_size():
             self._resize()
 
     @property
